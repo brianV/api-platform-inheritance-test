@@ -32,3 +32,7 @@ services:
     'App\Serializer\ApiNormalizer':
         decorates: 'api_platform.jsonld.normalizer.item'
         arguments: [ '@App\Serializer\ApiNormalizer.inner' ]
+
+    'App\Serializer\TestNormalizer':
+       tags:
+           - { name: 'serializer.normalizer', priority: 64 }

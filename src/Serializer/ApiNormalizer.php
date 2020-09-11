@@ -29,7 +29,6 @@ final class ApiNormalizer implements NormalizerInterface, DenormalizerInterface,
 
   public function normalize($object, $format = null, array $context = [])
   {
-    $context[AbstractObjectNormalizer::ENABLE_MAX_DEPTH] = TRUE;
     $data = $this->decorated->normalize($object, $format, $context);
 
     return $data;
@@ -41,16 +40,18 @@ final class ApiNormalizer implements NormalizerInterface, DenormalizerInterface,
     //dump($type);
     //dump($format);
     //dump($this->decorated->supportsDenormalization($data, $type, $format));
+
+    //$result = in_array($type, ['App\Entity\Child', 'App\Entity\OtherChild']) ? TRUE : $this->decorated->supportsDenormalization($data, $type, $format);
+    //return $result;
+
     return $this->decorated->supportsDenormalization($data, $type, $format);
   }
 
   public function denormalize($data, $class, $format = null, array $context = [])
   {
-//    if ($class === 'App\Entity\MappedSuperclass') {
-//      $class = 'App\Entity\\' . $data['@type'];
-//      $context['resource_class'] = $class;
-//    }
-    return $this->decorated->denormalize($data, $class, $format, $context);
+    $result = $this->decorated->denormalize($data, $class, $format, $context);
+    //dump($result);
+    return $result;
   }
 
   public function setSerializer(SerializerInterface $serializer)
