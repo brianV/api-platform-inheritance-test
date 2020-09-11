@@ -56,7 +56,7 @@ final class TestNormalizer implements ContextAwareDenormalizerInterface, Denorma
 
 //    return $type == 'App\Entity\MappedSuperclass';
 
-    return $this->denormalizer->supportsDenormalization($data, $string, $format);
+    return $this->denormalizer->supportsDenormalization($data, $type, $format);
   }
 
   /**
